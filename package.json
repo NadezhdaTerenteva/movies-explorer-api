@@ -1,0 +1,36 @@
+{
+  "name": "movies-explorer-api",
+  "version": "1.0.0",
+  "description": "backend part of the project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "eslint .  --ext .js",
+    "lint-fix": "eslint --fix .  --ext .js",
+    "type": "git",
+    "url": "git+https://github.com/NadezhdaTerenteva/movies-explorer-api.git"
+  },
+  "keywords": [
+    "BE",
+    "api",
+    "mongodb",
+    "node"
+  ],
+  "author": "Nadezhda Terenteva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NadezhdaTerenteva/movies-explorer-api/issues"
+  },
+  "homepage": "https://github.com/NadezhdaTerenteva/movies-explorer-api#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.5",
+    "validator": "^13.7.0"
+  }
+}
