@@ -9,7 +9,6 @@ const {
 
 router.get('/me', getUser);
 
-router.patch('/me', userValidator, updateUser);
-
+router.patch('/me', updateUser);
 
 module.exports = router; // экспортировали роутер

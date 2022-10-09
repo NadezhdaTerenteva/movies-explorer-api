@@ -14,5 +14,4 @@ movieRouter.post('/', createMovie);
 
 movieRouter.delete('/_id', deleteMovieById);
 
-
 module.exports = movieRouter; // экспортировали роутер
