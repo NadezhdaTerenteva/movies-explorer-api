@@ -4,7 +4,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-// const { errors } = require('celebrate');
+const { errors } = require('celebrate');
+const generalErrorHandler = require('./middlewares/generalErrorHandler');
 const { requestLogger } = require('./middlewares/request.log');
 const { errorLogger } = require('./middlewares/error.log');
 
@@ -22,6 +23,12 @@ mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
 const corsOptions = {
   origin: [
     'http://localhost:3000',
+    'http://localhost:4000',
+    'http://movie-explorer.nomoredomains.icu',
+    'http://back.movie-explorer.nomoredomains.icu',
+    'https://movie-explorer.nomoredomains.icu',
+    'https://back.movie-explorer.nomoredomains.icu',
+    'http://localhost:8080',
   ],
   credentials: true,
 };
@@ -34,7 +41,9 @@ app.use(routes);
 
 app.use(errorLogger); // подключаем логгер ошибок, до обработчиков ошибок
 
-// app.use(errors()); // обработчик ошибок celebrate
+app.use(errors()); // обработчик ошибок celebrate
+
+app.use(generalErrorHandler);
 
 app.listen(PORT, () => {
   // Если всё работает, консоль покажет, какой порт приложение слушает
