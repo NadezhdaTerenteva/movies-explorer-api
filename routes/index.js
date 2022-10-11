@@ -4,13 +4,14 @@ const router = require('express').Router();
 const userRouter = require('./users'); // импортируем роутер
 const movieRouter = require('./movies');
 
+const { authorizationValidator, registrationValidator } = require('../middlewares/validation');
 const NotFoundError = require('../errors/not-found-error');
 
 const { createUser, login, logout } = require('../controllers/users');
 const { auth } = require('../middlewares/auth');
 
-router.post('/signup', createUser);
-router.post('/signin', login);
+router.post('/signup', registrationValidator, createUser);
+router.post('/signin', authorizationValidator, login);
 router.post('/signout', logout);
 router.use(auth);
 router.use('/users', userRouter);

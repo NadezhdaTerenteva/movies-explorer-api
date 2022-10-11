@@ -6,6 +6,8 @@
 
 ## Ссылки на проект
 
-IP <0.0.0.0>
+IP <158.160.3.103>
 
-Backend https://
+Frontend https://back.movie-explorer.nomoredomains.icu
+
+Backend https://api.mesto.nadyaterenteva.nomoredomains.sbs
