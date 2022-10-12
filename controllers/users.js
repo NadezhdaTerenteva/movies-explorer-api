@@ -7,6 +7,13 @@ const BadRequestError = require('../errors/bad-request-error');
 const UnauthorizedError = require('../errors/unauthorized-error');
 const ConflictError = require('../errors/conflict-error');
 
+const {
+  CONFLICT_USER_MSG,
+  BAD_REQUEST_USER_MSG,
+  UNAUTHORIZED_ERROR_MSG,
+  NOT_FOUND_USER_MSG,
+} = require('../utils/constants');
+
 const mongoUpdateParams = {
   new: true, // обработчик then получит на вход обновлённую запись
   runValidators: true, // данные будут валидированы перед изменением
@@ -31,11 +38,11 @@ const createUser = async (req, res, next) => {
     res.status(200).send({ data: user });
   } catch (err) {
     if (err.code === 11000) {
-      next(new ConflictError('Пользователь с таким email уже существует'));
+      next(new ConflictError(CONFLICT_USER_MSG));
       return;
     }
     if (err.name === 'ValidationError') {
-      next(new BadRequestError('Некорректные данные при создании пользователя'));
+      next(new BadRequestError(BAD_REQUEST_USER_MSG));
     } else {
       next(err);
     }
@@ -45,10 +52,10 @@ const createUser = async (req, res, next) => {
 const login = (req, res, next) => {
   const { email, password } = req.body;
 
-  const errorMsg = 'Неправильные почта или пароль';
+  // const errorMsg = 'Неправильные почта или пароль';
   User.findOne({ email })
     .select('+password')
-    .orFail(() => new UnauthorizedError(errorMsg))
+    .orFail(() => new UnauthorizedError(UNAUTHORIZED_ERROR_MSG))
     .then((user) => bcrypt.compare(password, user.password)
       .then((isUserValid) => {
         if (isUserValid) {
@@ -62,7 +69,7 @@ const login = (req, res, next) => {
           });
           res.send({ data: user.toJSON() });
         } else {
-          throw new UnauthorizedError(errorMsg);
+          throw new UnauthorizedError(UNAUTHORIZED_ERROR_MSG);
         }
       }))
     .catch(next);
@@ -84,7 +91,7 @@ const getUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Такого пользователя не существует');
+        throw new NotFoundError(NOT_FOUND_USER_MSG);
       }
       res.status(200).send({ data: user });
     })
@@ -103,13 +110,13 @@ const updateUser = (req, res, next) => {
   )
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Такого пользователя не существует');
+        throw new NotFoundError(NOT_FOUND_USER_MSG);
       }
       res.status(200).send({ data: user });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Некорректные данные пользователя'));
+        next(new BadRequestError(BAD_REQUEST_USER_MSG));
       } else {
         next(err);
       }

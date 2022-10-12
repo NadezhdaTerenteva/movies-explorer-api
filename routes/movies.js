@@ -13,6 +13,6 @@ movieRouter.get('/', getMovies);
 
 movieRouter.post('/', movieValidator, createMovie);
 
-movieRouter.delete('/_id', movieIdValidator, deleteMovieById);
+movieRouter.delete('/:id', movieIdValidator, deleteMovieById);
 
 module.exports = movieRouter; // экспортировали роутер
