@@ -10,6 +10,12 @@ const NotFoundError = require('../errors/not-found-error');
 const { createUser, login, logout } = require('../controllers/users');
 const { auth } = require('../middlewares/auth');
 
+router.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 router.post('/signup', registrationValidator, createUser);
 router.post('/signin', authorizationValidator, login);
 router.post('/signout', logout);
