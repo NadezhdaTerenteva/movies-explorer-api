@@ -4,6 +4,8 @@
   "description": "backend part of the project",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -37,6 +39,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.10.0",
     "mongoose": "^6.6.5",
+    "nodemon": "^2.0.20",
     "validator": "^13.7.0",
     "winston": "^3.8.2"
   },
