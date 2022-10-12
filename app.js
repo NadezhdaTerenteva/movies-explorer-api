@@ -1,25 +1,28 @@
 require('dotenv').config();
 
 const express = require('express');
+const helmet = require('helmet');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const { errors } = require('celebrate');
+const { limiter, mongoDBUrl } = require('./utils/config');
 const generalErrorHandler = require('./middlewares/generalErrorHandler');
 const { requestLogger } = require('./middlewares/request.log');
 const { errorLogger } = require('./middlewares/error.log');
 
 const routes = require('./routes/index');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, NODE_ENV, DB_URL } = process.env;
 const app = express();
 
 // подключаемся к серверу mongo
-mongoose.connect('mongodb://localhost:27017/moviesdb', {
+mongoose.connect(NODE_ENV === 'production' ? DB_URL : mongoDBUrl, {
   useNewUrlParser: true,
   // useCreateIndex: true,
   // useFindAndModify: false
 });
+
 const corsOptions = {
   origin: [
     'http://localhost:3000',
@@ -35,6 +38,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(helmet());
+app.use(limiter);
 app.use(cookieParser());
 app.use(requestLogger); // подключаем логгер запросов, до роутов
 app.use(routes);
