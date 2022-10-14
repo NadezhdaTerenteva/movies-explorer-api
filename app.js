@@ -39,9 +39,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(helmet());
+app.use(requestLogger); // подключаем логгер запросов, до роутов, до limiter
 app.use(limiter);
 app.use(cookieParser());
-app.use(requestLogger); // подключаем логгер запросов, до роутов
+
 app.use(routes);
 
 app.use(errorLogger); // подключаем логгер ошибок, до обработчиков ошибок

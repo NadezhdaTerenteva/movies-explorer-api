@@ -115,6 +115,10 @@ const updateUser = (req, res, next) => {
       res.status(200).send({ data: user });
     })
     .catch((err) => {
+      if (err.code === 11000) {
+        next(new ConflictError(CONFLICT_USER_MSG));
+        return;
+      }
       if (err.name === 'ValidationError') {
         next(new BadRequestError(BAD_REQUEST_USER_MSG));
       } else {

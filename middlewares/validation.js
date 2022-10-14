@@ -1,6 +1,12 @@
 const { celebrate, Joi } = require('celebrate');
+const isURL = require('validator/lib/isURL');
 
-const linkValidator = /^((http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-/])*)?/;
+const urlValidator = (value, helpers) => {
+  if (isURL(value)) {
+    return value;
+  }
+  return helpers.message('Неверный формат ссылки');
+};
 
 const authorizationValidator = celebrate({
   body: Joi.object().keys({
@@ -31,9 +37,9 @@ const movieValidator = celebrate({
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.string().required().pattern(linkValidator),
-    trailerLink: Joi.string().required().pattern(linkValidator),
-    thumbnail: Joi.string().required().pattern(linkValidator),
+    image: Joi.string().required().custom(urlValidator),
+    trailerLink: Joi.string().required().custom(urlValidator),
+    thumbnail: Joi.string().required().custom(urlValidator),
     movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
