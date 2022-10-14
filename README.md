@@ -8,6 +8,6 @@
 
 IP <158.160.3.103>
 
-Frontend https://back.movie-explorer.nomoredomains.icu
+Frontend //
 
-Backend https://api.mesto.nadyaterenteva.nomoredomains.sbs
+Backend https://back.movie-explorer.nomoredomains.icu
