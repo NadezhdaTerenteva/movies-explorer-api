@@ -76,7 +76,7 @@ const login = (req, res, next) => {
 };
 
 const logout = (req, res) => {
-  res.cookie('jwt', {
+  res.cookie('jwt', '', {
     httpOnly: true,
     sameSite: true,
     // secure: true'
