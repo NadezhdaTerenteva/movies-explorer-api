@@ -21,8 +21,7 @@ const createMovie = (req, res, next) => {
     trailerLink,
     nameRU,
     nameEN,
-    thumbnail,
-    movieId,
+    id,
   } = req.body;
 
   Movie.create({
@@ -35,8 +34,7 @@ const createMovie = (req, res, next) => {
     trailerLink,
     nameRU,
     nameEN,
-    thumbnail,
-    movieId,
+    id,
     owner: req.user._id,
   }) // создадим документ на основе пришедших данных
     // вернём записанные в базу данные
