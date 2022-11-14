@@ -27,8 +27,8 @@ const corsOptions = {
   origin: [
     'http://localhost:3000',
     'http://localhost:4000',
-    'http://movie-explorer.nomoredomains.icu',
-    'http://back.movie-explorer.nomoredomains.icu',
+    'https://movie-explorer.nomoredomains.icu',
+    'https://back.movie-explorer.nomoredomains.icu',
     'http://localhost:8080',
   ],
   credentials: true,
