@@ -1,13 +1,14 @@
 # movies-explorer-api
 
-Репозиторий для бэкенд части приложения дипломного проекта `movies-explorer` со следующими возможностями: авторизации и регистрации пользователей, операции с фильмами  и пользователями. 
+Backeand part of the diploma project `movies-explorer` with the following options:
+ - authorization & registration;
+ - updating user profile;
+ - adding films to the favorites;
 
-Адрес репозитория: https://github.com/NadezhdaTerenteva/movies-explorer-api
-
-## Ссылки на проект
+### Links to the project
 
 IP <158.160.3.103>
 
-Frontend //
+Frontend https://movie-explorer.nomoredomains.icu
 
 Backend https://back.movie-explorer.nomoredomains.icu
