@@ -1,6 +1,6 @@
 # movies-explorer-api
 
-Backeand part of the diploma project `movies-explorer` with the following options:
+Backend part of the diploma project `movies-explorer` with the following options:
  - authorization & registration;
  - updating user profile;
  - adding films to the favorites;
