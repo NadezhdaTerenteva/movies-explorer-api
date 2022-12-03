@@ -1,11 +1,13 @@
-# movies-explorer-api
+# Project:  movies-explorer-api
+
+## Description
 
 Backend part of the diploma project `movies-explorer` with the following options:
  - authorization & registration;
  - updating user profile;
  - adding films to the favorites;
 
-### Links to the project
+## Links to the project
 
 IP <158.160.3.103>
 
