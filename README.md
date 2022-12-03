@@ -2,7 +2,9 @@
 
 ## Description
 
-Backend part of the diploma project `movies-explorer` with the following options:
+Backend part of the diploma project `movies-explorer` created according the brief from [Yandex.Practicum](https://www.practicum.yandex.ru).   
+
+API has following options:
  - authorization & registration;
  - updating user profile;
  - adding films to the favorites;
